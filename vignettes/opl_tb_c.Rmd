@@ -1,0 +1,93 @@
+---
+title: "opl_tb_c"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{opl_tb_c}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(OPL)
+```
+
+## Introduction
+
+The `opl_tb_c` function implements ex-ante treatment assignment using as
+    policy class a threshold-based (or quadrant) approach at specific
+    threshold values c1 and c2 for respectively the selection variables var1
+    and var2.
+
+## Usage
+
+opl_tb_c(make_cate_result, z, w, c1 = NA, c2 = NA)
+
+### Arguments
+
+- `make_cate_result`: A data frame containing input data, including a column named `my_cate`, representing conditional average treatment effects (CATE).
+- `z`: A character vector of length 2 specifying the column names of the two selection variables.
+- `w`: A character string indicating the column name for treatment assignment (binary variable).
+- `c1`: User-defined or function-optimized threshold for the first selection variable (between 0 and 1).
+- `c2`: User-defined or function-optimized threshold for the second selection variable (between 0 and 1).
+
+### Output
+
+The function returns the input data frame augmented with:
+- `z[1]_std`: Standardized first selection variable.
+- `z[2]_std`: Standardized second selection variable.
+- `units_to_be_treated`: Binary indicator for treatment assignment.
+
+Additionally, the function:
+- Prints a summary of key results, including threshold values, constrained and unconstrained welfare, and treatment proportions.
+- Displays a scatter plot visualizing the policy assignment.
+
+## Details
+
+The function follows these steps:
+1. Standardizes the selection variables to a [0,1] range.
+2. Identifies the optimal thresholds using grid search to maximize constrained welfare.
+3. Computes and reports key statistics, including average welfare and percentage of treated units.
+
+## Example
+
+```r
+# Load example data
+set.seed(123)
+data_example <- data.frame(
+  my_cate = runif(100, -1, 1),
+  var1 = runif(100, 0, 1),
+  var2 = runif(100, 0, 1),
+  treatment = sample(0:1, 100, replace = TRUE)
+)
+
+# Run threshold-based policy learning
+result <- opl_tb_c(
+  make_cate_result = data_example,
+  z = c("var1", "var2"),
+  w = "treatment"
+)
+```
+
+## Interpretation of Results
+
+- The printed summary provides insights into the optimal threshold values and the proportion of units assigned to treatment.
+- The scatter plot visualizes the treatment assignment based on the optimized thresholds.
+
+## References
+
+- Athey, S., & Wager, S. (2021). Policy Learning with Observational Data. *Econometrica*, 89(1), 133–161.
+- Cerulli, G. (2021). Improving econometric prediction by machine learning. *Applied Economics Letters*, 28(16), 1419-1425.
+- Cerulli, G. (2022). Optimal treatment assignment of a threshold-based policy: empirical protocol and related issues. *Applied Economics Letters*. DOI: 10.1080/13504851.2022.2032577.
+- Gareth, J., Witten, D., Hastie, D.T., & Tibshirani, R. (2013). *An Introduction to Statistical Learning: with Applications in R*. New York: Springer.
+- Kitagawa, T., & Tetenov, A. (2018). Who Should Be Treated? Empirical Welfare Maximization Methods for Treatment Choice. *Econometrica*, 86(2), 591–616.
+
+---
+
+This vignette provides an overview of the `opl_tb_c` function and demonstrates its usage for threshold-based policy learning. For further details, consult the package documentation.

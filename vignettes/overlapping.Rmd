@@ -1,0 +1,71 @@
+---
+title: "overlapping"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{overlapping}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(OPL)
+```
+
+### Introduction
+The overlapping function performs an overlap analysis between two datasets, typically used to compare populations before and after a policy intervention. The function applies Principal Component Analysis (PCA) to the covariates of both datasets (train and test) and then calculates the Kolmogorov-Smirnov (KS) test to assess the statistical overlap between the two distributions.
+
+### Usage
+
+overlapping(train_data, test_data, x)
+
+### Arguments
+
+train_data: A data frame representing the training dataset, typically indicating the old policy population.
+test_data: A data frame representing the test dataset, typically indicating the new policy population.
+x: A vector of predictor variable names (column names of train_data and test_data) to be used in the analysis.
+
+### Output
+The function generates the following outputs:
+
+A superposition graph comparing the distributions of the first principal component (PC1) for both the training and test datasets.
+The results of the Kolmogorov-Smirnov test, which quantifies the overlap between the two datasets.
+
+### Details
+The function follows these steps:
+
+Principal Component Analysis (PCA): PCA is applied to the covariates of both the training and test datasets to reduce the dimensionality and focus on the most significant variation.
+Kolmogorov-Smirnov Test: The Kolmogorov-Smirnov test is performed on the first principal components to test the hypothesis that the distributions of the two datasets are the same.
+
+### Example
+
+```r
+# Load example data
+set.seed(123)
+train_data <- data.frame(
+  var1 = rnorm(100), 
+  var2 = rnorm(100), 
+  var3 = rnorm(100)
+)
+test_data <- data.frame(
+  var1 = rnorm(100), 
+  var2 = rnorm(100), 
+  var3 = rnorm(100)
+)
+
+# Perform overlap analysis
+overlapping(train_data, test_data, x = c("var1", "var2", "var3"))
+```
+
+###  Interpretation of Results
+The graph shows the density distributions of the first principal component for both the training and test datasets. Overlap is indicated by how much the density curves intersect.
+The Kolmogorov-Smirnov test provides a p-value indicating whether the distributions of the two datasets are statistically different. A high p-value suggests that the distributions are similar, while a low p-value indicates significant differences.
+
+---
+This vignette provides an overview of the `overlapping` function and demonstrates its usage for comparing the overlap between two datasets using PCA and the Kolmogorov-Smirnov test. For further details, consult the package documentation.

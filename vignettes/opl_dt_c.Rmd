@@ -1,0 +1,77 @@
+---
+title: "opl_dt_c"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{opl_dt_c}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(OPL)
+```
+
+## Introduction
+
+The `opl_dt_c` function implements ex-ante treatment assignment using as 
+                policy class a 2-layer fixed-depth decision-tree at specific
+                splitting variables and threshold values.
+
+## Usage
+
+opl_dt_c(make_cate_result,z,w,c1=NA,c2=NA,c3=NA)
+
+### Output
+
+The function performs the following steps:
+- Standardizes threshold variables to the [0,1] range.
+- Determines optimal policy assignment using a constrained decision tree approach.
+- Computes and reports key statistics, including welfare gains and percentage of treated units.
+- Generates a visualization of the optimal policy assignment.
+
+## Details
+
+The `opl_dt_c` function follows these steps:
+1. Standardizes selection variables.
+2. Implements a grid search over threshold values.
+3. Identifies the optimal constrained policy maximizing welfare.
+4. Computes summary statistics and visualizes treatment assignment.
+
+## Example
+
+```r
+# Example data
+data_example <- data.frame(
+  my_cate = runif(100, -1, 1),
+  X1 = runif(100, 0, 1),
+  X2 = runif(100, 0, 1),
+  treatment = sample(0:1, 100, replace = TRUE)
+)
+
+# Run the decision tree-based policy learning function
+opl_dt_c()
+```
+
+## Interpretation of Results
+
+- The printed summary provides insights into constrained policy learning outcomes.
+- The generated plot visualizes the treatment allocation under the optimal decision tree-based policy.
+
+## References
+
+- Athey, S., & Wager, S. (2021). Policy Learning with Observational Data. *Econometrica*, 89(1), 133–161.
+- Cerulli, G. (2021). Improving econometric prediction by machine learning. *Applied Economics Letters*, 28(16), 1419-1425.
+- Cerulli, G. (2022). Optimal treatment assignment of a learning-based constrained policy: empirical protocol and related issues. *Applied Economics Letters*. DOI: 10.1080/13504851.2022.2032577.
+- Gareth, J., Witten, D., Hastie, D.T., & Tibshirani, R. (2013). *An Introduction to Statistical Learning: with Applications in R*. New York: Springer.
+- Kitagawa, T., & Tetenov, A. (2018). Who Should Be Treated? Empirical Welfare Maximization Methods for Treatment Choice. *Econometrica*, 86(2), 591–616.
+
+---
+
+This vignette provides an overview of the `opl_dt_c` function and demonstrates its usage for decision tree-based policy learning. For further details, consult the package documentation.

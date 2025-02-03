@@ -1,0 +1,90 @@
+---
+title: "opl_lc_c"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{opl_lc_c}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(OPL)
+```
+
+## Introduction
+
+The `opl_lc_c` function implements ex-ante treatment assignment using as
+    policy class a fixed-depth (1-layer) decision-tree at specific splitting
+    variables and threshold values.
+
+## Usage
+
+opl_lc_c(make_cate_result,z,w,c1=NA,c2=NA,c3=NA)
+
+
+### Arguments
+
+- `make_cate_result`: A data frame containing input data, including a column named `my_cate`, representing conditional average treatment effects (CATE).
+- `w`: A character string indicating the column name for treatment assignment (binary variable).
+- `policy_constraints`: A list of constraints applied to the treatment assignment, such as budget limits or fairness constraints.
+
+### Output
+
+The function returns the input data frame augmented with:
+- `treatment_assignment`: Binary indicator for treatment assignment based on policy learning.
+- `policy_summary`: Summary statistics detailing the constrained optimization results.
+
+Additionally, the function:
+- Prints a summary of key results, including welfare improvements under the learned policy.
+- Displays a visualization of the treatment allocation.
+
+## Details
+
+The function follows these steps:
+1. Estimates the optimal policy assignment using a machine learning-based approach.
+2. Incorporates policy constraints to balance fairness, budget, or other practical limitations.
+3. Computes and reports key statistics, including constrained welfare gains and proportion of treated units.
+
+## Example
+
+```r
+# Load example data
+set.seed(123)
+data_example <- data.frame(
+  my_cate = runif(100, -1, 1),
+  treatment = sample(0:1, 100, replace = TRUE)")
+
+# Define policy constraints
+constraints <- list(budget = 0.5)  # Example: treating at most 50% of units
+
+# Run learning-based constrained policy assignment
+result <- opl_lc_c(
+  make_cate_result = data_example,
+  w = "treatment",
+  policy_constraints = constraints
+)
+```
+
+## Interpretation of Results
+
+- The printed summary provides insights into the policy assignment under constraints.
+- The visualization illustrates the treatment allocation based on CATE estimates.
+
+## References
+
+- Athey, S., & Wager, S. (2021). Policy Learning with Observational Data. *Econometrica*, 89(1), 133–161.
+- Cerulli, G. (2021). Improving econometric prediction by machine learning. *Applied Economics Letters*, 28(16), 1419-1425.
+- Cerulli, G. (2022). Optimal treatment assignment of a learning-based constrained policy: empirical protocol and related issues. *Applied Economics Letters*. DOI: 10.1080/13504851.2022.2032577.
+- Gareth, J., Witten, D., Hastie, D.T., & Tibshirani, R. (2013). *An Introduction to Statistical Learning: with Applications in R*. New York: Springer.
+- Kitagawa, T., & Tetenov, A. (2018). Who Should Be Treated? Empirical Welfare Maximization Methods for Treatment Choice. *Econometrica*, 86(2), 591–616.
+
+---
+
+This vignette provides an overview of the `opl_lc_c` function and demonstrates its usage for learning-based constrained policy assignment. For further details, consult the package documentation.
