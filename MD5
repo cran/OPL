@@ -1,9 +1,9 @@
-a87eb5af26697065d4b8bdde9c0f13d7 *DESCRIPTION
+1c72ad7a980969e6e90cd9dbc713ce99 *DESCRIPTION
 8fbadf03f095fb74fe273078c6408933 *NAMESPACE
 d5844c2611b5bc313e6e15c21aa0aa5e *R/make_cate.r
 c8c36f8dc00a40648e97378e67d0375e *R/opl_dt_c.R
 3925555ca011f4f19fea839a63e3ac86 *R/opl_dt_max_choice.R
-e68fe8e556a7a3d35425b0fb961d566c *R/opl_lc_c.R
+94fb12a3714a292f915b91657ecd3f4c *R/opl_lc_c.R
 0657e1191a03941bef9408eeb809c258 *R/opl_tb_c.R
 09cf4b5c0b2f1536ddb5f89a00c8e6c3 *R/overlapping.R
 de9e77057fb96e57f4f3bde0309b4035 *build/vignette.rds

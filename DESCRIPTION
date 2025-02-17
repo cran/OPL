@@ -1,7 +1,7 @@
 Package: OPL
 Type: Package
 Title: Optimal Policy Learning
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Federico", "Brogi", email = "federicobrogi@gmail.com", role = c("aut", "cre")), 
 	     person("Barbara", "Guardabascio", email = "barbara.guardabascio@unipg.it", role = "aut"), 
 	     person("Giovanni", "Cerulli", email = "giovanni.cerulli@ircres.cnr.it", role = "aut"))
@@ -13,7 +13,7 @@ Description: Provides functions for optimal policy learning in socioeconomic app
 	on data in order to maximize empirical welfare. Specifically, 'OPL' allows to find "treatment assignment rules" that maximize the overall 
 	welfare, defined as the sum  of the policy effects estimated over all the policy beneficiaries. Documentation about 'OPL' is provided by  
 	several international articles via Athey et al (2021, <doi:10.3982/ECTA15732>), Kitagawa et al (2018, <doi:10.3982/ECTA13288>),
-        Cerulli (2022, <doi:10.1080/13504851.2022.2032577>), the paper by Cerulli (201, <doi:10.1080/13504851.2020.1820939>) 
+        Cerulli (2022, <doi:10.1080/13504851.2022.2032577>), the paper by Cerulli (2021, <doi:10.1080/13504851.2020.1820939>) 
 	and the book by Gareth et al (2013, <doi:10.1007/978-1-4614-7138-7>).
 License: GPL-3
 Encoding: UTF-8
@@ -22,6 +22,6 @@ Imports: stats, dplyr, ggplot2, pander, randomForest, tidyr
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-01-31 20:54:44 UTC; UTENTE
+Packaged: 2025-02-17 11:56:58 UTC; UTENTE
 Repository: CRAN
-Date/Publication: 2025-02-03 12:00:05 UTC
+Date/Publication: 2025-02-17 12:10:04 UTC

@@ -121,7 +121,7 @@ else  {
   # user threshold selection
   best_c1 <- c1
   best_c2 <- c2
-  best_c2 <- c3
+  best_c3 <- c3
 }
 
 # calculating and showing final results
