@@ -168,7 +168,6 @@ j<-which(col_max==h)
 # selezione trattati e non
 
 best<-matrix(0,nc,3)
-units_to_be_treated<-list()
 untreated<-0
 treated<-0
 treat_row<-0
@@ -204,7 +203,10 @@ perc_opt_treat<-0
     (X1>=best_1 & X2>=best_2) | (X1<best_1 & X3>=best_3)
   ),1]
 
-  units_to_be_treated <-appo[treat_row,]
+  appo$units_to_be_treated<-0
+  appo$units_to_be_treated[treat_row]<-1
+  var_std$units_to_be_treated<-0
+  var_std$units_to_be_treated[which(var_std$D_opt=="True")]<-appo$units_to_be_treated
 
   # number of treated and untreated
   treated<-length(treat_row)
@@ -219,7 +221,15 @@ W_rct<-mean(J_1$my_cate)      # ATET = average welfare actually realized
 D_opt <- make_cate_result %>% filter(my_cate>=0)
 W_opt_unconstr<-mean(D_opt$my_cate)   #AVG WELFARE GENERATED UNCONSTRAINED
 
-gc()
+# add standardized variables to the dataset
+data_dt<-cbind(make_cate_result,var_std$X1,var_std$X2,var_std$units_to_be_treated)
+colnames(data_dt)[colnames(data_dt) == "var_std$X1"] <- paste(z[1],"_std",sep="")
+colnames(data_dt)[colnames(data_dt) == "var_std$X2"] <- paste(z[2],"_std",sep="")
+colnames(data_dt)[colnames(data_dt) == "var_std$units_to_be_treated"] <- "units_to_be_treated"
+
+# W_opt_constrained
+# viene ricalcolato in caso di input (c1,c2,c3) dell'utente
+W_opt_constr<-mean(data_dt$my_cate[data_dt$units_to_be_treated==1])
 
 # print results and graph
 output <- paste(
@@ -275,5 +285,6 @@ if(verbose){
 
 
 gc()
+invisible(data_dt)
 }
 

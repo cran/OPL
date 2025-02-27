@@ -163,6 +163,7 @@ data_tb<-cbind(make_cate_result,var_std$X1,var_std$X2,var_std$units_to_be_treate
 colnames(data_tb)[colnames(data_tb) == "var_std$X1"] <- paste(z[1],"_std",sep="")
 colnames(data_tb)[colnames(data_tb) == "var_std$X2"] <- paste(z[2],"_std",sep="")
 colnames(data_tb)[colnames(data_tb) == "var_std$units_to_be_treated"] <- "units_to_be_treated"
+W_opt_constr<-mean(data_tb$my_cate[data_tb$units_to_be_treated==1])
 
 # print results and graph
 output <- paste(

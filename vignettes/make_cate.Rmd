@@ -116,3 +116,7 @@ ATENT = [ATENT_value]
 
 ##Conclusion##
 The make_cate function is a powerful tool for estimating the causal treatment effect of a policy using either GLM or Random Forest models. It provides insights into the treatment effects both for the old and new policies, making it a useful method for causal inference in policy analysis.
+
+## Acknowledgment
+The development of this software was supported by FOSSR (Fostering Open Science in Social Science Research), a project funded by the European Union - NextGenerationEU under the NPRR Grant agreement n. MURIR0000008.
+

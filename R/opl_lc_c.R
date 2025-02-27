@@ -166,6 +166,7 @@ data_lc<-cbind(make_cate_result,var_std$X1,var_std$X2,var_std$units_to_be_treate
 colnames(data_lc)[colnames(data_lc) == "var_std$X1"] <- paste(z[1],"_std",sep="")
 colnames(data_lc)[colnames(data_lc) == "var_std$X2"] <- paste(z[2],"_std",sep="")
 colnames(data_lc)[colnames(data_lc) == "var_std$units_to_be_treated"] <- "units_to_be_treated"
+W_opt_constr<-mean(data_lc$my_cate[data_lc$'var_std$units_to_be_treated'==1])
 
 # print results and graph
 output <- paste(

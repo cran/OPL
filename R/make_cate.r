@@ -122,7 +122,7 @@ make_cate <- function(model,train_data,test_data,w,x,y,family=gaussian(),ntree=1
       "--------------------------------------------------\n",
       paste("Number of obs =", obs_test), "\n",
       paste("Estimator = regression adjustment"), "\n",
-      paste("Outcome model = linear"), "\n",
+      paste("Outcome model =",model), "\n",
       paste("DIM =", round(DIM, 7)), "\n",
       paste("ATE =", round(ATE, 7)), "\n",
       paste("ATET =", round(ATET, 7)), "\n",

@@ -69,3 +69,6 @@ The Kolmogorov-Smirnov test provides a p-value indicating whether the distributi
 
 ---
 This vignette provides an overview of the `overlapping` function and demonstrates its usage for comparing the overlap between two datasets using PCA and the Kolmogorov-Smirnov test. For further details, consult the package documentation.
+
+## Acknowledgment
+The development of this software was supported by FOSSR (Fostering Open Science in Social Science Research), a project funded by the European Union - NextGenerationEU under the NPRR Grant agreement n. MURIR0000008.

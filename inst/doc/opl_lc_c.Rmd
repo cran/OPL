@@ -88,3 +88,7 @@ result <- opl_lc_c(
 ---
 
 This vignette provides an overview of the `opl_lc_c` function and demonstrates its usage for learning-based constrained policy assignment. For further details, consult the package documentation.
+
+
+## Acknowledgment
+The development of this software was supported by FOSSR (Fostering Open Science in Social Science Research), a project funded by the European Union - NextGenerationEU under the NPRR Grant agreement n. MURIR0000008.

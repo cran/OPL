@@ -91,3 +91,6 @@ result <- opl_tb_c(
 ---
 
 This vignette provides an overview of the `opl_tb_c` function and demonstrates its usage for threshold-based policy learning. For further details, consult the package documentation.
+
+## Acknowledgment
+The development of this software was supported by FOSSR (Fostering Open Science in Social Science Research), a project funded by the European Union - NextGenerationEU under the NPRR Grant agreement n. MURIR0000008.
